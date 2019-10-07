@@ -1,6 +1,6 @@
 /**
- * @author Mohammad Mukhtaruzzaman
- * @version 2019-09-18
+ * @author Kate McGeath
+ * @version 2019-10-09
 */
 public class MesoStation 
 {
