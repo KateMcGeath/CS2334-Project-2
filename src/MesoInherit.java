@@ -7,6 +7,7 @@ public class MesoInherit extends MesoAbstract {
 	private static final int ID_LENGTH = 4;
 	private String stID;
 	private String[] stationList;
+	private int[] avgArray = new int[3];
 	
 	public MesoInherit(String stID) {
 		this.stID = stID;
@@ -16,7 +17,6 @@ public class MesoInherit extends MesoAbstract {
 	@Override
 	public int[] calAverage() {
 		double avg = 0.0;
-		int[] avgArray = new int[3];
 		
 		//Looping through the stationList array to add together the ASCII values. 
 		//Converts the string to character to turn the char to an ascii value.
@@ -36,6 +36,7 @@ public class MesoInherit extends MesoAbstract {
 	
 	@Override
 	public char letterAverage() {
-		
+		char asciiValue = (char)avgArray[2];
+		return asciiValue;
 	}
 }
