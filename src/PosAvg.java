@@ -9,7 +9,8 @@ import java.io.IOException;
  */
 public class PosAvg {
 	private static final int ID_LENGTH = 4;
-private String stID;
+	private String stID;
+	private String[] listOfStations;
 
 
 	public PosAvg(String stID) {
@@ -17,7 +18,6 @@ private String stID;
 	}
 	
 	public int indexOfStation() throws IOException {
-		String[] myStation = stID.split("");
 		
 		//Creating the BufferedReader and getting through the first two irrelevant lines.
 		BufferedReader br = new BufferedReader(new FileReader("Mesonet1.txt"));
@@ -26,23 +26,35 @@ private String stID;
 		
 		//Initializes variables.
 		String lineOfData = "";
-		int charsEqual = 0;
 		int indexResult = 0;
 		int numOfLines = 0;
 		
 		//Reads through the mesonet text line by line only if it has text.
 		while((lineOfData = br.readLine()) != null) {
-			numOfLines++;
+		
 			String[] otherStation = new String[3];
 			otherStation = lineOfData.split("");
+			String station = "";
 		
-			//Looping through the first 4 characters of each line of data and comparing
-			//the two arrays. Checks to see if all characters equal, and if so, the result is set to that number of lines.
+			//Looping through the first 4 characters of each line of data and combining them into one string.
+			//The string is then put in the listOfStations array with the appropriate index.
 			for(int index = 0; index < ID_LENGTH; index++) {
-				if(myStation[index].equalsIgnoreCase(otherStation[index]))
-					charsEqual++;
-			} if(charsEqual == ID_LENGTH)
+				station = station + otherStation[index];
+			} listOfStations[numOfLines] = station;
+			if(listOfStations[numOfLines].equalsIgnoreCase(stID))
 				indexResult = numOfLines;
-		} return indexResult;
+			numOfLines++;
+		}
+		return indexResult;
+	}
+	
+	public String toString() {
+		try {
+			int index = this.indexOfStation();
+		} catch (IOException e) {
+			//Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
