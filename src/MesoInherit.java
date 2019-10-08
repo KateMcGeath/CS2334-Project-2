@@ -57,8 +57,6 @@ public class MesoInherit extends MesoAbstract {
 		//Initializing variables.
 		String lineOfData = "";
 		int stations = 0;
-		double avg = 0.0;
-		int stationAscii = 0;
 		
 		//A while loop that loops through the Mesonet text only if there is a line of data available.
 		//Splits up the line of text into a String array, separated by character.
@@ -71,6 +69,10 @@ public class MesoInherit extends MesoAbstract {
 					stations++;
 			} 
 		} return stations;
+	}
+	
+	public String toString() {
+		
 	}
 }
 

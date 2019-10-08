@@ -10,7 +10,7 @@ import java.io.IOException;
 public class PosAvg {
 	private static final int ID_LENGTH = 4;
 	private String stID;
-	private String[] listOfStations;
+	private String[] listOfStations = new String[10];
 	private int indexResult = 0;
 
 
@@ -32,19 +32,15 @@ public class PosAvg {
 		//Reads through the mesonet text line by line only if it has text.
 		while((lineOfData = br.readLine()) != null) {
 		
-			String[] otherStation = new String[3];
-			otherStation = lineOfData.split("");
-			String station = "";
-		
-			//Looping through the first 4 characters of each line of data and combining them into one string.
-			//The string is then put in the listOfStations array with the appropriate index.
-			for(int index = 0; index < ID_LENGTH; index++) {
-				station = station + otherStation[index];
-			} //********is the listOfStations array being set a size? is that a problem?********** 
-			listOfStations[numOfLines] = station;
-			if(listOfStations[numOfLines].equalsIgnoreCase(stID))
-				indexResult = numOfLines;
-			numOfLines++;
+			if(listOfStations.length == numOfLines)
+				listOfStations = new String[numOfLines * 2];
+			else {
+				listOfStations[numOfLines] = lineOfData.substring(1, 5);
+			
+				if(listOfStations[numOfLines].equalsIgnoreCase(stID))
+					indexResult = numOfLines;
+				numOfLines++;
+			}
 		}
 		return indexResult;
 	}
