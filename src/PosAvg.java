@@ -40,7 +40,8 @@ public class PosAvg {
 			//The string is then put in the listOfStations array with the appropriate index.
 			for(int index = 0; index < ID_LENGTH; index++) {
 				station = station + otherStation[index];
-			} listOfStations[numOfLines] = station;
+			} //********is the listOfStations array being set a size? is that a problem?********** 
+			listOfStations[numOfLines] = station;
 			if(listOfStations[numOfLines].equalsIgnoreCase(stID))
 				indexResult = numOfLines;
 			numOfLines++;
@@ -51,6 +52,7 @@ public class PosAvg {
 	public String toString() {
 		
 		//Getting the result of the indexOfStation and writing out the output.
+		//*****Will this work or do I need to call the indexOfStation method********
 		int index = this.indexResult;
 		String output = "The index is average of " + listOfStations[index - 1] + " and " + listOfStations[index + 1]
 					+ ", " + listOfStations[index - 2] + " and " + listOfStations[index + 2] + ", and so on.";

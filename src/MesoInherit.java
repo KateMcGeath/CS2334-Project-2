@@ -65,15 +65,11 @@ public class MesoInherit extends MesoAbstract {
 		while((lineOfData = br.readLine()) != null) {
 			String[] chars = lineOfData.split("");
 			
-			for(int index = 0; index < ID_LENGTH; index++) {
+			for(int index = 0; index < 1; index++) {
 				char character = stationList[index].charAt(0);
-				avg = avg + (int)character;
-			} avg = avg / ID_LENGTH;
-
-			stationAscii = (int)Math.round(avg);
-			//Checks to see if the first character in the array
-			if(((char)stationAscii) == this.asciiValue)))
-				stations++;
+				if(character == (char)this.letterAverage())
+					stations++;
+			} 
 		} return stations;
 	}
 }
