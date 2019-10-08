@@ -46,13 +46,18 @@ public class PosAvg {
 	}
 	
 	public String toString() {
+		String town1 = "";
+		String town2 = "";
+		String output = "The index is average of ";
 		
-		//Getting the result of the indexOfStation and writing out the output.
-		//*****Will this work or do I need to call the indexOfStation method********
-		int index = this.indexResult;
+		for(int index = 2; index < listOfStations.length - 2; index++) {
 			
-		String output = "The index is average of " + listOfStations[index - 1] + " and " + listOfStations[index + 1]
-					+ ", " + listOfStations[index - 2] + " and " + listOfStations[index + 2] + ", and so on.";
+			if(listOfStations[indexResult + index] != null && listOfStations[indexResult - index] != null) {
+				town1 = listOfStations[indexResult + index];
+				town2 = listOfStations[indexResult - index];
+				output = output + town1 + " and " + town2 + ",";
+			}
+		} output = output + " and so on.";
 		
 		return output;
 	}

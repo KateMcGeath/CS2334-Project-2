@@ -41,10 +41,10 @@ public class LetterAvg {
 	}
 	
 	public String toString() {
-		String output = "They are: \n";
+		String output = "They are:";
 		for(int index = 0; index < stationList.length; index++) {
 			if(stationList[index].charAt(0) == letter)
-				output = output + stationList[index] + "\n";
+				output = output + "\n" + stationList[index];
 		} return output;
 	}
 }
