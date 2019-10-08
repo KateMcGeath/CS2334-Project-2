@@ -11,6 +11,7 @@ public class PosAvg {
 	private static final int ID_LENGTH = 4;
 	private String stID;
 	private String[] listOfStations;
+	private int indexResult = 0;
 
 
 	public PosAvg(String stID) {
@@ -26,7 +27,6 @@ public class PosAvg {
 		
 		//Initializes variables.
 		String lineOfData = "";
-		int indexResult = 0;
 		int numOfLines = 0;
 		
 		//Reads through the mesonet text line by line only if it has text.
@@ -49,12 +49,12 @@ public class PosAvg {
 	}
 	
 	public String toString() {
-		try {
-			int index = this.indexOfStation();
-		} catch (IOException e) {
-			//Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		//Getting the result of the indexOfStation and writing out the output.
+		int index = this.indexResult;
+		String output = "The index is average of " + listOfStations[index - 1] + " and " + listOfStations[index + 1]
+					+ ", " + listOfStations[index - 2] + " and " + listOfStations[index + 2] + ", and so on.";
+		
+		return output;
 	}
 }
