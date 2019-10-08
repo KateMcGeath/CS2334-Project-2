@@ -5,6 +5,11 @@ import java.io.IOException;
 public class LetterAvg {
 
 	private String[] stationList = new String[10];
+	private char letter;
+	
+	public LetterAvg(char c) {
+		this.letter = c;
+	}
 	
 	public int numberOfStationsWithLetterAvg() throws IOException {
 		//Creating the BufferedReader.
@@ -16,22 +21,30 @@ public class LetterAvg {
 		
 		//Initializing variables.
 		String lineOfData = "";
+		int numOfLines = 0;
 		int stations = 0;
 		
 		//A while loop that loops through the Mesonet text only if there is a line of data available.
 		//Splits up the line of text into a String array, separated by character.
 		while((lineOfData = br.readLine()) != null) {
-			String[] chars = lineOfData.split("");
 			
-			for(int index = 0; index < 1; index++) {
-				char character = stationList[index].charAt(0);
-				if(character == (char)this.letterAverage())
+			if(stationList.length == numOfLines)
+				stationList = new String[numOfLines * 2];
+			else {
+				stationList[numOfLines] = lineOfData.substring(1, 5);
+			
+				if(stationList[numOfLines].charAt(0) == letter)
 					stations++;
-			} 
+				numOfLines++;
+			}
 		} return stations;
 	}
 	
 	public String toString() {
-		
+		String output = "They are: \n";
+		for(int index = 0; index < stationList.length; index++) {
+			if(stationList[index].charAt(0) == letter)
+				output = output + stationList[index] + "\n";
+		} return output;
 	}
 }
