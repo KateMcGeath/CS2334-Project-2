@@ -14,10 +14,12 @@ public class PosAvg {
 	private String[] listOfStations;
 	private int indexResult = 0;
 
+	//Empty Constructor.
 	public PosAvg() {
 		
 	}
 
+	//Constructor with parameter of a string that is the station ID.
 	public PosAvg(String stID) {
 		this.stID = stID; 
 	}
@@ -36,15 +38,14 @@ public class PosAvg {
 		listOfStations = new String[10];
 				
 		//Reads through the mesonet text line by line only if it has text.	
-				while((lineOfData = br.readLine()) != null) {
-					//Resizes the array if necessary.
-					if(listOfStations.length == numOfLines)
-						listOfStations = Arrays.copyOf(listOfStations ,listOfStations.length * 2);
+		while((lineOfData = br.readLine()) != null) {
+			//Resizes the array if necessary.
+			if(listOfStations.length == numOfLines)
+				listOfStations = Arrays.copyOf(listOfStations ,listOfStations.length * 2);
 					
-					//Puts the station into the array.
-					listOfStations[numOfLines] = lineOfData.substring(1, 5);
-					numOfLines++;	
-		
+			//Puts the station into the array.
+			listOfStations[numOfLines] = lineOfData.substring(1, 5);
+			numOfLines++;			
 		} return listOfStations;
 	}
 	
