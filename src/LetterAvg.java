@@ -12,38 +12,27 @@ public class LetterAvg {
 	}
 	
 	public int numberOfStationsWithLetterAvg() throws IOException {
-		//Creating the BufferedReader.
-		BufferedReader br = new BufferedReader(new FileReader("Mesonet.txt"));
-		
-		//Getting rid of the first two lines that are irrelevant.
-		br.readLine();
-		br.readLine();
-		
-		//Initializing variables.
-		String lineOfData = "";
-		int numOfLines = 0;
+		PosAvg posAvg = new PosAvg();
+		this.stationList = posAvg.getStationsArray();
 		int stations = 0;
-		
-		//A while loop that loops through the Mesonet text only if there is a line of data available.
-		//Splits up the line of text into a String array, separated by character.
-		while((lineOfData = br.readLine()) != null) {
-			
-			if(stationList.length == numOfLines)
-				stationList = new String[numOfLines * 2];
-			else {
-				stationList[numOfLines] = lineOfData.substring(1, 5);
-			
-				if(stationList[numOfLines].charAt(0) == avg)
+			for(int index = 0; index < stationList.length; index++) {
+				if(stationList[index] != null && stationList[index].charAt(0) == avg)
 					stations++;
-				numOfLines++;
-			}
-		} return stations;
+			} return stations;
 	}
 	
 	public String toString() {
+		PosAvg posAvg = new PosAvg();
 		String output = "They are:";
+		try {
+			this.stationList = posAvg.getStationsArray();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		for(int index = 0; index < stationList.length; index++) {
-			if(stationList[index].charAt(0) == avg)
+			if(stationList[index] != null && stationList[index].charAt(0) == avg)
 				output = output + "\n" + stationList[index];
 		} return output;
 	}

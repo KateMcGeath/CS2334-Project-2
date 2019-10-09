@@ -11,39 +11,53 @@ import java.util.Arrays;
 public class PosAvg {
 	private static final int ID_LENGTH = 4;
 	private String stID;
-	private String[] listOfStations = new String[10];
+	private String[] listOfStations;
 	private int indexResult = 0;
 
+	public PosAvg() {
+		
+	}
 
 	public PosAvg(String stID) {
 		this.stID = stID; 
 	}
 	
-	public int indexOfStation() throws IOException {
-		
+	public String[] getStationsArray() throws IOException {
 		//Creating the BufferedReader and getting through the first two irrelevant lines.
 		BufferedReader br = new BufferedReader(new FileReader("Mesonet.txt"));
 		br.readLine();
 		br.readLine();
 		br.readLine();
-		
-		
+				
+				
 		//Initializes variables.
 		String lineOfData = "";
 		int numOfLines = 0;
+		listOfStations = new String[10];
+				
+		//Reads through the mesonet text line by line only if it has text.	
+				while((lineOfData = br.readLine()) != null) {
+					//Resizes the array if necessary.
+					if(listOfStations.length == numOfLines)
+						listOfStations = Arrays.copyOf(listOfStations ,listOfStations.length * 2);
+					
+					//Puts the station into the array.
+					listOfStations[numOfLines] = lineOfData.substring(1, 5);
+					numOfLines++;	
 		
-		//Reads through the mesonet text line by line only if it has text.
-		while((lineOfData = br.readLine()) != null) {
+		} return listOfStations;
+	}
+	
+	public int indexOfStation() throws IOException {
+		String[] stationsArray = getStationsArray();
 		
-			if(listOfStations.length == numOfLines)
-				listOfStations = new String[numOfLines * 2];
+		for(int index = 0; index < stationsArray.length; index++) {
 			
-			listOfStations[numOfLines] = lineOfData.substring(1, 5);
-			
-			if(listOfStations[numOfLines].equalsIgnoreCase(stID))
-				indexResult = numOfLines;
-			numOfLines++;
-			
+			//Compares the station at the index to the station inputed.
+			if(stationsArray[index] != null && stationsArray[index].equalsIgnoreCase(stID)) {
+				indexResult = index;
+				break;
+			}
 		}
 		return indexResult + 1;
 	}
