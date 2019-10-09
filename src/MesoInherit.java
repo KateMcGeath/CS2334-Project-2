@@ -15,8 +15,8 @@ public class MesoInherit extends MesoAbstract {
 	private int[] avgArray = new int[3];
 	private char asciiValue;
 	
-	public MesoInherit(String stID) {
-		this.stID = stID;
+	public MesoInherit(MesoStation station) {
+		this.stID = station.getStID();
 		stationList = stID.split("");
 	}
 	

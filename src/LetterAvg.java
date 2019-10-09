@@ -5,10 +5,10 @@ import java.io.IOException;
 public class LetterAvg {
 
 	private String[] stationList = new String[10];
-	private char letter;
+	private char avg;
 	
 	public LetterAvg(char c) {
-		this.letter = c;
+		this.avg = c;
 	}
 	
 	public int numberOfStationsWithLetterAvg() throws IOException {
@@ -33,7 +33,7 @@ public class LetterAvg {
 			else {
 				stationList[numOfLines] = lineOfData.substring(1, 5);
 			
-				if(stationList[numOfLines].charAt(0) == letter)
+				if(stationList[numOfLines].charAt(0) == avg)
 					stations++;
 				numOfLines++;
 			}
@@ -43,7 +43,7 @@ public class LetterAvg {
 	public String toString() {
 		String output = "They are:";
 		for(int index = 0; index < stationList.length; index++) {
-			if(stationList[index].charAt(0) == letter)
+			if(stationList[index].charAt(0) == avg)
 				output = output + "\n" + stationList[index];
 		} return output;
 	}

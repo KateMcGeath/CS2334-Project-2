@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 /*
  * @author Kate McGeath
@@ -21,7 +22,7 @@ public class PosAvg {
 	public int indexOfStation() throws IOException {
 		
 		//Creating the BufferedReader and getting through the first two irrelevant lines.
-		BufferedReader br = new BufferedReader(new FileReader("Mesonet1.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("Mesonet.txt"));
 		br.readLine();
 		br.readLine();
 		
@@ -45,20 +46,22 @@ public class PosAvg {
 		return indexResult;
 	}
 	
+	
+	@Override
 	public String toString() {
-		String town1 = "";
-		String town2 = "";
-		String output = "The index is average of ";
 		
-		for(int index = 2; index < listOfStations.length - 2; index++) {
+		//Constructing variables.
+		int index;
+		String output = "";
+		
+		try {
+			index = indexOfStation() - 1;
+			output = "The index is average of " + listOfStations[index - 1] + " and " + listOfStations[index + 1] + ", " 
+					+ listOfStations[index - 2] + " and " + listOfStations[index + 2] + ", and so on";
+		} catch (IOException e) {
 			
-			if(listOfStations[indexResult + index] != null && listOfStations[indexResult - index] != null) {
-				town1 = listOfStations[indexResult + index];
-				town2 = listOfStations[indexResult - index];
-				output = output + town1 + " and " + town2 + ",";
-			}
-		} output = output + " and so on.";
-		
+			e.printStackTrace();
+		}
 		return output;
 	}
 }
