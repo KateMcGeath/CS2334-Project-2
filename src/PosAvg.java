@@ -25,6 +25,8 @@ public class PosAvg {
 		BufferedReader br = new BufferedReader(new FileReader("Mesonet.txt"));
 		br.readLine();
 		br.readLine();
+		br.readLine();
+		
 		
 		//Initializes variables.
 		String lineOfData = "";
@@ -35,15 +37,15 @@ public class PosAvg {
 		
 			if(listOfStations.length == numOfLines)
 				listOfStations = new String[numOfLines * 2];
-			else {
-				listOfStations[numOfLines] = lineOfData.substring(1, 5);
 			
-				if(listOfStations[numOfLines].equalsIgnoreCase(stID))
-					indexResult = numOfLines;
-				numOfLines++;
-			}
+			listOfStations[numOfLines] = lineOfData.substring(1, 5);
+			
+			if(listOfStations[numOfLines].equalsIgnoreCase(stID))
+				indexResult = numOfLines;
+			numOfLines++;
+			
 		}
-		return indexResult;
+		return indexResult + 1;
 	}
 	
 	
@@ -51,13 +53,15 @@ public class PosAvg {
 	public String toString() {
 		
 		//Constructing variables.
-		int index;
+		int index = 0;
 		String output = "";
 		
 		try {
+			//Calling the indexOfStation to find the index that the stID is at. Then uses the array listOfStations
+			//to find the other stations that have the average of the stID.
 			index = indexOfStation() - 1;
 			output = "The index is average of " + listOfStations[index - 1] + " and " + listOfStations[index + 1] + ", " 
-					+ listOfStations[index - 2] + " and " + listOfStations[index + 2] + ", and so on";
+					+ listOfStations[index - 2] + " and " + listOfStations[index + 2] + ", and so on.";
 		} catch (IOException e) {
 			
 			e.printStackTrace();
