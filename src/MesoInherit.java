@@ -37,7 +37,6 @@ public class MesoInherit extends MesoAbstract {
 		avgArray[2] = (int)Math.round(avg);
 		
 		return avgArray;
-		
 	}
 	
 	@Override

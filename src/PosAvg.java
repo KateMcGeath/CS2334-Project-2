@@ -75,7 +75,7 @@ public class PosAvg {
 			//Calling the indexOfStation to find the index that the stID is at. Then uses the array listOfStations
 			//to find the other stations that have the average of the stID.
 			index = indexOfStation() - 1;
-			output = "The index is average of " + listOfStations[index - 1] + " and " + listOfStations[index + 1] + ", " 
+			output = "This index is average of " + listOfStations[index - 1] + " and " + listOfStations[index + 1] + ", " 
 					+ listOfStations[index - 2] + " and " + listOfStations[index + 2] + ", and so on.";
 		} catch (IOException e) {
 			

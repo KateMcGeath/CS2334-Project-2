@@ -12,7 +12,7 @@ public class LetterAvg {
 		this.avg = c;
 	}
 	
-	public int numberOfStationsWithLetterAvg() throws IOException {
+	public int numberOfStationWithLetterAvg() throws IOException {
 		
 		//Initializing variables.
 		PosAvg posAvg = new PosAvg();
@@ -31,7 +31,7 @@ public class LetterAvg {
 		
 		//Initializing variables.
 		PosAvg posAvg = new PosAvg();
-		String output = "They are:";
+		String output = "\nThey are:";
 		try {
 			this.stationList = posAvg.getStationsArray();
 		} catch (IOException e) {
